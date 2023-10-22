@@ -15,18 +15,152 @@ class TourHanoi:
         self.max_symbole = nbre_symbole(niveau)
 
         for i in range(niveau):
-            self.piquet1.append(i+1);
+            self.piquet1.append(i+1)
             self.piquet2.append(0)
             self.piquet3.append(0)
 
+        self.piquet1.append(niveau+1)
+        self.piquet2.append(niveau+1)
+        self.piquet3.append(niveau+1)
+
+    def deplacer_disque(self, num_piquet_depart, num_piquet_arrivee):
+        indice_disque_a_prendre = 0
+        indice_placement_disque = 0
+
+        #premier cas : piquet1 vers piquet2
+        if num_piquet_depart == 1 and num_piquet_arrivee == 2 :
+            for i in range(self.niveau):
+                if self.piquet1[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet2[j] == 0 and self.piquet2[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet2[indice_placement_disque+1] > self.piquet1[indice_disque_a_prendre]:
+                self.piquet2[indice_placement_disque] = self.piquet1[indice_disque_a_prendre]
+                self.piquet1[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
+        # deuxieme cas : piquet1 vers piquet3
+        if num_piquet_depart == 1 and num_piquet_arrivee == 3 :
+            for i in range(self.niveau):
+                if self.piquet1[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet3[j] == 0 and self.piquet3[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet3[indice_placement_disque+1] > self.piquet1[indice_disque_a_prendre]:
+                self.piquet3[indice_placement_disque] = self.piquet1[indice_disque_a_prendre]
+                self.piquet1[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
+        #troisieme cas : piquet2 vers piquet1
+        if num_piquet_depart == 2 and num_piquet_arrivee == 1 :
+            for i in range(self.niveau):
+                if self.piquet2[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet1[j] == 0 and self.piquet1[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet1[indice_placement_disque+1] > self.piquet2[indice_disque_a_prendre]:
+                self.piquet1[indice_placement_disque] = self.piquet2[indice_disque_a_prendre]
+                self.piquet2[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
+        # quatrieme cas : piquet2 vers piquet3
+        if num_piquet_depart == 2 and num_piquet_arrivee == 3 :
+            for i in range(self.niveau):
+                if self.piquet2[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet3[j] == 0 and self.piquet3[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet3[indice_placement_disque+1] > self.piquet2[indice_disque_a_prendre]:
+                self.piquet3[indice_placement_disque] = self.piquet2[indice_disque_a_prendre]
+                self.piquet2[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
+        # cinquieme cas : piquet3 vers piquet1
+        if num_piquet_depart == 3 and num_piquet_arrivee == 1 :
+            for i in range(self.niveau):
+                if self.piquet3[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet1[j] == 0 and self.piquet1[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet1[indice_placement_disque+1] > self.piquet3[indice_disque_a_prendre]:
+                self.piquet1[indice_placement_disque] = self.piquet3[indice_disque_a_prendre]
+                self.piquet3[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
+        # sixieme cas : piquet3 vers piquet2
+        if num_piquet_depart == 3 and num_piquet_arrivee == 2 :
+            for i in range(self.niveau):
+                if self.piquet3[i] != 0 :
+                    indice_disque_a_prendre = i
+                    #print(i)
+                    break
+            for j in range(self.niveau):
+                if self.piquet2[j] == 0 and self.piquet2[j+1] != 0 :
+                    indice_placement_disque = j
+                    #print(j)
+                    break
+
+            if self.piquet2[indice_placement_disque+1] > self.piquet3[indice_disque_a_prendre]:
+                self.piquet2[indice_placement_disque] = self.piquet3[indice_disque_a_prendre]
+                self.piquet3[indice_disque_a_prendre] = 0
+                return 0
+            else:
+                print("Mouvement interdit !")
+                return 1
+
     def dessine_piquet(self):
         print("\n",((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" ")
-        print(((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" ")
-        print(((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" \n")
+        print("",((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" ")
+        print("",((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" \n")
 
     def dessine_disque(self, niveau_disque):
         if niveau_disque == 0 :
-            print(((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" ")
+            print("",((int)((self.max_symbole - 1) / 2) + self.espace_init ) * " ", "!", ((int)((self.max_symbole - 1) / 2) + self.espace_init) * " ", end=" ")
         else :
             n = nbre_symbole(niveau_disque)
             nbre_espace = (int)((self.max_symbole - n) / 2) + self.espace_init
