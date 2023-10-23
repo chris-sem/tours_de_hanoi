@@ -1,4 +1,25 @@
 
+def debut():
+    print("\n---------------------------------------------------   T O U R S    D E    H A N O I   ---------------------------------------------------\n")
+    print("- Déplace tous les disques sur le troisième piquet, en utilisant le piquet intermédiaire au milieu")
+    print("- Décris ton déplacement avec 2 nombres n1 et n2, séparés par des virgules. EX : 1,2 ")
+    print("- n1 correspond au piquet où tu vas prendre le disque, et n2, le piquet où tu vas deposer le disque")
+    print("- Tape q : pour arreter le jeu !\n")
+    retour = "z"
+    while retour != "c":
+        retour = input("Tape c pour continuer : ")
+        retour = retour.strip().lower()
+
+def choix_de_niveau():
+    while True:
+        try:
+            entier = int(input("Entre le nombre de disque (min : 1 , max : 6) : "))
+            if 1 <= entier <= 6:
+                return entier
+            else:
+                print("le nombre de disque doit être compris entre 1 et 8 !")
+        except ValueError:
+            print("Veuillez entrer un entier !")
 def action_utilisateur():
     input_string = input("\nEntrez les numeros du piquet de depart, d'arrivée (ou 'q' pour quitter) séparés par des virgules : ")
 
@@ -72,6 +93,7 @@ class TourHanoi:
 
     def dessine_jeu(self):
 
+        print("\n")
         self.dessine_piquet()
 
         for i in range(self.niveau):

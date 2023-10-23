@@ -1,8 +1,8 @@
-#On va fixer le nivaeu max à 6
-
 from hanoi import *
 
-jeu = TourHanoi(2)
+debut()
+niveau = choix_de_niveau()
+jeu = TourHanoi(niveau)
 jeu.dessine_jeu()
 
 continuer = True
