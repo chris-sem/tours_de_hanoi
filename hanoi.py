@@ -1,31 +1,23 @@
 
 def action_utilisateur():
-    # Saisie de la chaîne contenant les deux nombres séparés par des virgules
-    input_string = input("Entrez les numeros du piquet de depart, d'arrivée (ou 'q' pour quitter) séparés par des virgules : ")
+    input_string = input("\nEntrez les numeros du piquet de depart, d'arrivée (ou 'q' pour quitter) séparés par des virgules : ")
 
     if input_string.strip().lower() == 'q':
-        # L'utilisateur a entré "q" pour quitter
         print("Vous avez choisi de quitter !")
         return (0,0)
     else:
-        # Divisez la chaîne en utilisant la virgule comme séparateur
         numbers = input_string.split(',')
 
-        # Assurez-vous que nous avons exactement deux éléments
         if len(numbers) != 2:
             print("Veuillez entrer deux nombres séparés par une virgule ! ")
             return (-1,-1)
         else:
             try:
-                # Convertissez les éléments en nombres (float ici, mais vous pouvez utiliser int si nécessaire)
                 num1 = int(numbers[0])
                 num2 = int(numbers[1])
 
                 # Vérifiez que les nombres sont compris entre 1 et 3
                 if 1 <= num1 <= 3 and 1 <= num2 <= 3:
-                    # Les nombres sont valides
-                    #print("Premier nombre :", num1)
-                    #print("Deuxième nombre :", num2)
                     return (num1, num2)
                 else:
                     print("Les nombres doivent être compris entre 1 et 3.")
@@ -90,6 +82,13 @@ class TourHanoi:
 
         self.dessine_socle()
 
+    def jeu_resolu(self):
+        for i in range(self.niveau):
+            if self.piquet3[i] != i + 1:
+                return False
+        return True
+
+
     def deplacer_disque(self, num_piquet_depart, num_piquet_arrivee):
         indice_disque_a_prendre = 0
         indice_placement_disque = 0
@@ -101,6 +100,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet1[indice_disque_a_prendre] ==0 :
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet2[j] == 0 and self.piquet2[j+1] != 0 :
                     indice_placement_disque = j
@@ -122,6 +125,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet1[indice_disque_a_prendre] ==0 :
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet3[j] == 0 and self.piquet3[j+1] != 0 :
                     indice_placement_disque = j
@@ -143,6 +150,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet2[indice_disque_a_prendre] ==0 :
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet1[j] == 0 and self.piquet1[j+1] != 0 :
                     indice_placement_disque = j
@@ -164,6 +175,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet2[indice_disque_a_prendre] ==0 :
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet3[j] == 0 and self.piquet3[j+1] != 0 :
                     indice_placement_disque = j
@@ -185,6 +200,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet3[indice_disque_a_prendre] ==0 :
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet1[j] == 0 and self.piquet1[j+1] != 0 :
                     indice_placement_disque = j
@@ -206,6 +225,10 @@ class TourHanoi:
                     indice_disque_a_prendre = i
                     #print(i)
                     break
+
+            if indice_disque_a_prendre == 0 and self.piquet3[indice_disque_a_prendre] ==0:
+                indice_disque_a_prendre = self.niveau #Cas ou il n' y a pas de disque sur le piquet
+
             for j in range(self.niveau):
                 if self.piquet2[j] == 0 and self.piquet2[j+1] != 0 :
                     indice_placement_disque = j

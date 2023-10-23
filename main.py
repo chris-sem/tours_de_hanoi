@@ -1,14 +1,24 @@
 #On va fixer le nivaeu max à 6
 
-import hanoi
+from hanoi import *
 
-jeu = hanoi.TourHanoi(4)
-jeu.dessine_jeu()
-jeu.deplacer_disque(1,2)
-jeu.dessine_jeu()
-jeu.deplacer_disque(1,3)
-jeu.dessine_jeu()
-jeu.deplacer_disque(2,3)
+jeu = TourHanoi(2)
 jeu.dessine_jeu()
 
+continuer = True
 
+while continuer :
+
+    action = action_utilisateur()
+
+    if action[0]==0 and action[1]==0 :
+        continuer = False
+    elif action[0]!= -1 and action[1] != -1:
+        if jeu.deplacer_disque(action[0], action[1]) == 0:
+            jeu.dessine_jeu()
+    else:
+        print("On arrive jamais ici !")
+
+    if(jeu.jeu_resolu()):
+        print("\n * * * Félicitations !! * * *")
+        continuer = False
